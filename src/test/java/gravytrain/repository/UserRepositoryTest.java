@@ -72,5 +72,22 @@ public class UserRepositoryTest extends GravytrainTest {
 		userRepository.delete(savedUser);
 		assertEquals(null, userRepository.findOne(savedUser.getId()));
 	}
+	
+	@Test 
+	public void findBySurname() {
+		User savedUser = getTempUser();
+		savedUser.setSurname("aaaa");
+		userRepository.save(savedUser);
+		savedUser = getTempUser();
+		savedUser.setSurname("aaa");
+		userRepository.save(savedUser);
+		savedUser = getTempUser();
+		savedUser.setSurname("bbb");
+		userRepository.save(savedUser);
+		assertEquals(3, ((List<User>)userRepository.findAll()).size());
+		assertEquals(2, userRepository.findBySurname("aaa").size());
+		assertEquals("aaaa", userRepository.findBySurname("aaaa").get(0).getSurname());
+		assertEquals(3, userRepository.findBySurname("").size());
+	}
 
 }

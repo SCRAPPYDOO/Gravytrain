@@ -30,28 +30,32 @@ public class User {
 	@Temporal(TemporalType.DATE)
 	private Date dateOfBirth;
 
-	private boolean isActive;
+	private boolean active;
 
 	public User() {
 	}
 
-	public User(String title, String firstname, String surname, Date dateOfBirth, boolean isActive) {
+	public User(String title, String firstname, String surname, Date dateOfBirth, boolean active) {
 		super();
 		this.title = title;
 		this.firstname = firstname;
 		this.surname = surname;
 		this.dateOfBirth = dateOfBirth;
-		this.isActive = isActive;
+		this.active = active;
 	}
 
-	public User(int id, String title, String firstname, String surname, Date dateOfBirth, boolean isActive) {
+	public User(int id, String title, String firstname, String surname, Date dateOfBirth, boolean active) {
 		super();
 		this.id = id;
 		this.title = title;
 		this.firstname = firstname;
 		this.surname = surname;
 		this.dateOfBirth = dateOfBirth;
-		this.isActive = isActive;
+		this.active = active;
+	}
+
+	public User(int id) {
+		this.id = id;
 	}
 
 	public int getId() {
@@ -95,17 +99,17 @@ public class User {
 	}
 
 	public boolean isActive() {
-		return isActive;
+		return active;
 	}
 
-	public void setActive(boolean isActive) {
-		this.isActive = isActive;
+	public void setActive(boolean active) {
+		this.active = active;
 	}
 	
 	@PreRemove
 	private void preRemove() throws ActiveUserException {
-	    if (isActive) {
-	        throw new ActiveUserException();
+	    if (active) {
+	        throw new ActiveUserException("You can not remove active user.");
 	    }
 	}
 }
