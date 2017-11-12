@@ -41,7 +41,7 @@ export class UserListComponent implements OnInit {
     this.userList = this.userService.getUsersBySurname(this.searchBySurname);
   }
 
-  private activeOptions: any = [true, false];
+  public activeOptions: any = [true, false];
   
   public newUser: User = new User(null, "", "", "", null, false);
 
