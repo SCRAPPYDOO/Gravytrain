@@ -1,0 +1,69 @@
+<div class="container">
+  <div class="table">
+    <h2>User List</h2>
+    <form (ngSubmit)="onSearchBuSurname();" #userForm="ngForm">
+      <label for="searchBySurname">Search By Surname</label>
+      <input type="text" class="form-control" id="searchBySurname" [(ngModel)]="searchBySurname" name="searchBySurname">
+      <button type="submit" class="btn btn-success">Search</button>
+    </form>
+    <br>
+    <button class="btn btn-success" (click)="onRefreshList()">Get All Users</button> 
+    <br>
+    <br>
+    <table border="1px" style="width:100%">
+        <tr>
+          <th> </th>
+          <th>ID</th>
+          <th>TITLE</th>
+          <th>NAME</th>
+          <th>SURNAME</th>
+          <th>DATE OF BIRTH</th>
+          <th>IS ACTIVE</th>
+        </tr>
+        <tr *ngFor="let user of userList">
+          <th> </th> 
+          <th>{{user.id}}</th> 
+          <th>{{user.title}}</th>
+          <th>{{user.firstname}}</th> 
+          <th>{{user.surname}}</th> 
+          <th>{{user.dateOfBirth}}</th> 
+          <th>{{user.active}}</th> 
+          <th><input class="btn btn-success" type="button" (click)="onDelete(user.id)" value="Remove" style="width:100%"></th>
+        </tr>
+    </table>
+  </div>
+</div>
+<div class="container">
+  <h1>New User Form</h1>
+  <form (ngSubmit)="onSubmitNewUser(); userForm.reset()" #userForm="ngForm">
+    <div class="form-group">
+      <label for="title">Title</label>
+      <input type="text" class="form-control" id="title"  [(ngModel)]="newUser.title" name="title">
+    </div>
+
+    <div class="form-group">
+      <label for="firstname">Firstname</label>
+      <input type="text" class="form-control" id="firstname" [(ngModel)]="newUser.firstname" name="firstname">
+    </div>
+
+    <div class="form-group">
+      <label for="surname">Surname</label>
+      <input type="text" class="form-control" id="surname" [(ngModel)]="newUser.surname" name="surname">
+    </div>
+
+    <div class="form-group">
+      <label for="dateOfBirth">Date of birth</label>
+      <material-datepicker id="datepicker" [(date)]="newUser.dateOfBirth" name="dateOfBirth"></material-datepicker>
+    </div>
+
+    <div class="form-group">
+      <label for="active">Is active</label>
+      <select class="form-control" id="power" [(ngModel)]="newUser.active" name="active">
+        <option *ngFor="let active of activeOptions" [value]="active">{{active}}</option>
+      </select>
+    </div>
+
+    <button type="submit" class="btn btn-success">Submit</button>
+
+  </form>
+</div>

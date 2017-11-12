@@ -36,7 +36,6 @@ public class UserControllerTest extends GravytrainTest {
 	@MockBean
 	private UserService userService;
 
-	@SuppressWarnings("unchecked")
 	@Before
 	public void setUp() {
 		List<User> users = getTempUsers();
