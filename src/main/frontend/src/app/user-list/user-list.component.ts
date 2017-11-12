@@ -14,6 +14,10 @@ export class UserListComponent implements OnInit {
 
   public searchBySurname: string = "";
 
+  public activeOptions: any = [true, false];
+  
+  public newUser: User = new User(null, "", "", "", null, false);
+
   constructor(private userService: UserService) { }
 
   ngOnInit() {
@@ -40,10 +44,6 @@ export class UserListComponent implements OnInit {
   public onSearchBuSurname() {
     this.userList = this.userService.getUsersBySurname(this.searchBySurname);
   }
-
-  public activeOptions: any = [true, false];
-  
-  public newUser: User = new User(null, "", "", "", null, false);
 
   public onSubmitNewUser() { 
     let user: User = this.newUser;
