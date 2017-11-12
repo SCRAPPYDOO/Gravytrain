@@ -4,9 +4,13 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import com.fasterxml.jackson.databind.ObjectMapper;
+
 import gravytrain.repository.user.User;
 
 public abstract class GravytrainTest {
+	protected static final ObjectMapper mapper = new ObjectMapper();
+	
 	public User getTempUser() {
 		return new User("Title1", "Martin", "Makowski", new Date(), true);
 	}

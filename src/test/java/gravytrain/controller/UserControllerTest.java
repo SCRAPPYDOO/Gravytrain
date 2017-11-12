@@ -82,7 +82,6 @@ public class UserControllerTest extends GravytrainTest {
 
 	@Test
 	public void getUsersBySurname() throws Exception {
-		String userJson = mapper.writeValueAsString(getTempUser());
 		this.mockMvc.perform(get("/userBySurname/")).andDo(print())
 				.andExpect(status().is4xxClientError());
 		this.mockMvc.perform(get("/userBySurname/aaaa")).andDo(print())
